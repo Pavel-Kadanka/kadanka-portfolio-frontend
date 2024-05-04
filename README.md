@@ -1,2 +1,2 @@
-# kadanka-portfolio
-This is my portfolio site
+# kadanka-portfolio-frontend
+This is frontend part of my portfolio site
