@@ -2,9 +2,9 @@
     <nav id="navMenu">
         <h1>PAVEL KADAŇKA</h1>
         <div id="navMenuMini">
-            <nuxt-link :href="'/' + item" v-for="(item, index) in menuItems" :key="index">
+            <a :href="'/' + (item === 'home' ? '' : item)" v-for="(item, index) in menuItems" :key="index" v-if="item !== null">
                 <span>{{ item }}</span>
-            </nuxt-link>
+            </a>
             <div class="dot"></div>
         </div>
     </nav>
@@ -27,39 +27,37 @@ export default {
 
     #navMenu {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
-        height: 100vh;
+        height: auto;
+        padding: 0 3vw;
     }
 
     #navMenu h1 {
         display: block;
         font-size: 7vh;
         transition: 1s;
-        margin: 1rem;
     }
 
     #navMenuMini {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 2rem;
-        width: 100vh;
     }
 
     #navMenuMini a {
         color: #00DE59;
         font-size: 4vh;
         text-decoration: none;
-        margin: 1rem;
+        margin: 0 1rem;
         position: relative;
         transition: 1s;
         height: 2rem;
         text-transform: uppercase;
     }
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 950px) {
         #navMenu h1 {
             position: relative;
             font-size: 5vh;
