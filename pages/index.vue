@@ -80,6 +80,5 @@ export default {
 
     #navMenu a:hover {
         color: #ff0000;
-        font-size: +1rem;
     }
 </style>

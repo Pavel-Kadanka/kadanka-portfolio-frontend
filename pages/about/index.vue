@@ -2,7 +2,7 @@
     <MenuItem />
 
     <div class="contentBox">
-        <h2>About</h2>
+        <h2>ABOUT</h2>
         <div class="contentBoxMini">
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dolor dolor, maximus blandit augue quis, efficitur suscipit nisl. Vestibulum sodales vulputate elit non malesuada. Integer rhoncus est ultricies metus sodales maximus. Proin volutpat id erat sit amet venenatis. Ut vulputate diam sit amet nulla tempus maximus. Duis viverra viverra metus, at consequat lectus faucibus a. Sed non imperdiet erat.
@@ -12,6 +12,11 @@
             <img src="" alt="">
         </div>
     </div>
+    <div class="contentBox">
+        <h2>MY SKILLS</h2>
+    </div>
+
+
 
 </template>
 <script>

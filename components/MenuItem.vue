@@ -31,12 +31,12 @@ export default {
         justify-content: space-between;
         align-items: center;
         height: auto;
-        padding: 0 3vw;
+        padding: 2vh 3vw;
     }
 
     #navMenu h1 {
         display: block;
-        font-size: 7vh;
+        font-size: 2vh;
         transition: 1s;
     }
 
@@ -48,7 +48,7 @@ export default {
 
     #navMenuMini a {
         color: #00DE59;
-        font-size: 4vh;
+        font-size: 2vh;
         text-decoration: none;
         margin: 0 1rem;
         position: relative;
@@ -78,6 +78,5 @@ export default {
 
     #navMenu a:hover {
         color: #ff0000;
-        font-size: +1rem;
     }
 </style>

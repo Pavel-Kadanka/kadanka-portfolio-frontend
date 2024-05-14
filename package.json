@@ -5,16 +5,15 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "start": "nuxt start",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
-  "dependencies": {
-    "nuxt": "^3.11.2",
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
-  },
   "devDependencies": {
-    "@nuxtjs/google-fonts": "^3.2.0"
+    "@nuxt/devtools": "latest",
+    "nuxt": "^3.8.0",
+    "vue": "^3.3.7",
+    "vue-router": "^4.2.5"
   }
 }
