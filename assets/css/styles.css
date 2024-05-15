@@ -21,3 +21,31 @@ p {
 .contentBox {
     padding: 0 9vw;
 }
+
+.contentBoxMini {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.contentBoxMini p {
+    width: 35vw;
+}
+.contentBoxMini img {
+    border: 1px white solid;
+    width: 35vw;
+}
+.contentBoxMini .progress {
+    width: 20vw;
+    height: 10vh;
+}
+@media only screen and (max-width: 950px) {
+    .contentBoxMini {
+        display: block;
+    }
+    .contentBoxMini p {
+        width: auto;
+    }
+    .contentBoxMini img {
+        width: auto;
+    }
+}

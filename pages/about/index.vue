@@ -14,6 +14,15 @@
     </div>
     <div class="contentBox">
         <h2>MY SKILLS</h2>
+        <div class="contentBoxMini">
+            <v-progress-circular
+                v-for="(progress, index) in progressData"
+                :key="index"
+                class="progress"
+                color="blue"
+                :model-value="progress.value"
+            ></v-progress-circular>
+        </div>
     </div>
 
 
@@ -21,29 +30,22 @@
 </template>
 <script>
 
+export default {
+  data() {
+    return {
+      progressData: [
+        { value: 20 },
+        { value: 40 },
+        { value: 60 },
+        { value: 80 },
+        { value: 100 },
+        // Add more objects as needed
+      ],
+    };
+  },
+};
+
 </script>
 <style>
-    .contentBoxMini {
-        display: flex;
-        justify-content: space-between;
-    }
-    .contentBoxMini p {
-        width: 35vw;
-    }
-    .contentBoxMini img {
-        border: 1px white solid;
-        width: 35vw;
-    }
 
-    @media only screen and (max-width: 950px) {
-        .contentBoxMini {
-            display: block;
-        }
-        .contentBoxMini p {
-            width: auto;
-        }
-        .contentBoxMini img {
-            width: auto;
-        }
-    }
 </style>
