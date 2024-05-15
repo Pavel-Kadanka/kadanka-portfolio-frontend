@@ -1,13 +1,15 @@
 <template>
-    <nav id="navMenu">
-        <h1>PAVEL KADAŇKA</h1>
-        <div id="navMenuMini">
-            <a :href="'/' + (item === 'home' ? '' : item)" v-for="(item, index) in menuItems" :key="index" v-if="item !== null">
-                <span>{{ item }}</span>
-            </a>
-            <div class="dot"></div>
-        </div>
-    </nav>
+    <div id="Menu">
+        <nav id="navMenu">
+            <h1>PAVEL KADAŇKA</h1>
+            <div id="navMenuMini">
+                <a :href="'/' + (item === 'home' ? '' : item)" v-for="(item, index) in menuItems" :key="index" v-if="item !== null">
+                    <span>{{ item }}</span>
+                </a>
+                <div class="dot"></div>
+            </div>
+        </nav>
+    </div>
 </template>
 
 <script>
@@ -21,10 +23,6 @@ export default {
 </script>
 
 <style scoped>
-    #mainMenu {
-        display: flex;
-    }
-
     #navMenu {
         display: flex;
         flex-direction: row;

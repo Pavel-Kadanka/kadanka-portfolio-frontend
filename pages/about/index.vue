@@ -19,9 +19,11 @@
                 v-for="(progress, index) in progressData"
                 :key="index"
                 class="progress"
-                color="blue"
+                :color="progress.color"
+                size="128"
+                width="8"
                 :model-value="progress.value"
-            ></v-progress-circular>
+            ><span>{{ progress.name }}</span></v-progress-circular>
         </div>
     </div>
 
@@ -34,12 +36,15 @@ export default {
   data() {
     return {
       progressData: [
-        { value: 20 },
-        { value: 40 },
-        { value: 60 },
-        { value: 80 },
-        { value: 100 },
-        // Add more objects as needed
+        { value: 100, name: "HTML", color: "#f16529"},
+        { value: 90, name: "CSS", color: "#2965f1"},
+        { value: 60, name: "JavaScript", color: "#f0dc4e"},
+        { value: 50, name: "VUE 3", color: "green"},
+        { value: 50, name: "NUXT 3", color: "green"},
+        { value: 30, name: "C#", color: "#00589d"},
+        { value: 100, name: "git", color: "#f05133"},
+        { value: 30, name: "PHP", color: "#787cb4"},
+        { value: 10, name: "Laravel", color: "#ff291a"}
       ],
     };
   },
