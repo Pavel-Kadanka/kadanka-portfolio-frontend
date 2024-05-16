@@ -6,7 +6,6 @@
                 <a :href="'/' + (item === 'home' ? '' : item)" v-for="(item, index) in menuItems" :key="index" v-if="item !== null">
                     <span>{{ item }}</span>
                 </a>
-                <div class="dot"></div>
             </div>
         </nav>
     </div>
@@ -16,7 +15,7 @@
 export default {
     data() {
         return {
-            menuItems: ['home', 'about', 'projects', 'resume']
+            menuItems: ['home', 'about', 'projects', 'contact-me']
         };
     },
 };
@@ -46,7 +45,7 @@ export default {
 
     #navMenuMini a {
         color: #00DE59;
-        font-size: 2vh;
+        font-size: vh;
         text-decoration: none;
         margin: 0 1rem;
         position: relative;
@@ -76,5 +75,7 @@ export default {
 
     #navMenu a:hover {
         color: #ff0000;
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
     }
 </style>

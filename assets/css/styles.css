@@ -9,8 +9,8 @@ h1 {
 }
 
 h2 {
-    color: #864FCD;
-    text-decoration: underline;
+    display: block;
+    color: #00DE59;
     font-size: 5vh;
 }
 
@@ -24,7 +24,7 @@ p {
 
 .contentBoxMini {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 .contentBoxMini p {
@@ -32,7 +32,9 @@ p {
 }
 .contentBoxMini img {
     border: 1px white solid;
-    width: 35vw;
+    width: 50rex;
+    height: 50rex;
+    transition: 1s;
 }
 .contentBoxMini .progress {
     width: 15vw;
@@ -43,6 +45,67 @@ p {
     background-color: white;
     transition: 1s;
     font-weight: 700;
+}
+.contentBox02 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 80vh;
+    transition: 1s;
+}
+@-webkit-keyframes hvr-buzz {
+    50% {
+      -webkit-transform: translateX(3px) rotate(2deg);
+      transform: translateX(3px) rotate(2deg);
+    }
+    100% {
+      -webkit-transform: translateX(-3px) rotate(-2deg);
+      transform: translateX(-3px) rotate(-2deg);
+    }
+  }
+  
+  @keyframes hvr-buzz {
+    50% {
+      -webkit-transform: translateX(3px) rotate(2deg);
+      transform: translateX(3px) rotate(2deg);
+    }
+    100% {
+      -webkit-transform: translateX(-3px) rotate(-2deg);
+      transform: translateX(-3px) rotate(-2deg);
+    }
+  }
+  
+  .contentBox02 > * {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  }
+  
+  .contentBox02 > *:hover, .contentBox02 > *:focus, .contentBox02 > *:active {
+    -webkit-animation-name: hvr-buzz;
+    animation-name: hvr-buzz;
+    -webkit-animation-duration: 0.15s;
+    animation-duration: 0.15s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+  }
+  
+.contentBoxMini .progress:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.contentBoxMini .progress span:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.contentBoxMini img:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }
 @media only screen and (max-width: 950px) {
     .contentBoxMini {

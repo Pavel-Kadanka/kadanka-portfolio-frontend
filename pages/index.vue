@@ -1,20 +1,21 @@
 <template>
-    <nav id="navMenu">
-        <h1>PAVEL KADAŇKA</h1>
-        <div id="navMenuMini">
-            <nuxt-link :href="'/' + item" v-for="(item, index) in menuItems" :key="index">
-                <span>{{ item }}</span>
-            </nuxt-link>
-            <div class="dot"></div>
-        </div>
-    </nav>
+    <div id="Menu">
+        <nav id="navMenu">
+            <h1>PAVEL KADAŇKA</h1>
+            <div id="navMenuMini">
+                <a :href="'/' + (item === 'home' ? '' : item)" v-for="(item, index) in menuItems" :key="index" v-if="item !== null">
+                    <span>{{ item }}</span>
+                </a>
+            </div>
+        </nav>
+    </div>
 </template>
 
 <script>
 export default {
     data() {
         return {
-            menuItems: ['home', 'about', 'projects', 'resume']
+            menuItems: ['home', 'about', 'projects', 'contact-me']
         };
     },
 };
@@ -80,5 +81,7 @@ export default {
 
     #navMenu a:hover {
         color: #ff0000;
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
     }
 </style>
