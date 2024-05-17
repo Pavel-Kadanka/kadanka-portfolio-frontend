@@ -4,59 +4,34 @@
   <h2 class="contentBox">MY PROJECTS</h2>
   <v-row class="contentBox">
     <div class="contentBoxMini">
-      <v-col v-for="item in items" :key="item.id" cols="10" md="3">
+      <v-col v-for="project in projects" :key="project.id" cols="10" md="40">
         <v-card
           color="#00DE59"
           border=""
-          :image="item.image"
+          :image="project.image"
         >
-          <v-card-title>{{ item.title }}</v-card-title>
-          <v-card-text>{{ item.text }}</v-card-text>
+          <v-card-title>{{ project.title }}</v-card-title>
+          <v-card-text>{{ project.name }}</v-card-text>
         </v-card>
       </v-col>
     </div>
   </v-row>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      items: [
-        {
-          id: 1,
-          title: "Project name 1",
-          text: "Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet ",
-          image: "cutecat.jpg"
-        },
-        {
-          id: 2,
-          title: "Project name 1",
-          text: "Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet ",
-          image: "cutecat.jpg"
-        },
-        {
-          id: 3,
-          title: "Project name 1",
-          text: "Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet ",
-          image: "cutecat.jpg"
-        },
-        {
-          id: 4,
-          title: "Project name 1",
-          text: "Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet ",
-          image: "cutecat.jpg"
-        },
-        {
-          id: 5,
-          title: "Project name 1",
-          text: "Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet ",
-          image: "cutecat.jpg"
-        },
-      ]
-    };
-  }
-};
+<script setup>
+  import { ref, onMounted } from 'vue';
+  import useProjectService from '~/services/projectService';
+  
+  const projects = ref([]);
+  const { getProjects } = useProjectService();
+  
+  onMounted(async () => {
+    try {
+      projects.value = await getProjects();
+    } catch (error) {
+      console.error(error.message);
+    }
+  });
 </script>
 
 <style>

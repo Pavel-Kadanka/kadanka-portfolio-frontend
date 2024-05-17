@@ -1,7 +1,7 @@
 <template>
     <div id="Menu">
-        <h1>PAVEL KADAŇKA</h1>
         <nav id="navMenu">
+            <h1>PAVEL KADAŇKA</h1>
             <!-- Navigation links (hidden by default on small screens) -->
             <div id="navMenuMini" :class="{ 'show': isMenuVisible }">
                 <a :href="'/' + (item === 'home' ? '' : item)" v-for="(item, index) in menuItems" :key="index" v-if="item !== null">
@@ -46,7 +46,7 @@ export default {
 }
 
 #navMenu h1 {
-    display: block;
+    display: inline-block;
     font-size: 2vh;
     transition: 1s;
 }

@@ -18,39 +18,34 @@
     <div class="contentBox">
         <div class="contentBoxMini">
             <v-progress-circular
-                v-for="(progress, index) in progressData"
-                :key="index"
+                v-for="skill in skills"
+                :key="skill.id"
                 class="progress"
-                :color="progress.color"
+                :color="skill.color"
                 size="128"
                 width="8"
-                :model-value="progress.value"
-            ><span>{{ progress.name }}</span></v-progress-circular>
+                :model-value="skill.percentage"
+            ><span>{{ skill.name }}</span></v-progress-circular>
         </div>
     </div>
 
 
 
 </template>
-<script>
+<script setup>
+import { ref, onMounted } from 'vue';
+import useSkillService from '~/services/skillService';
 
-export default {
-  data() {
-    return {
-      progressData: [
-        { value: 100, name: "HTML", color: "#f16529"},
-        { value: 90, name: "CSS", color: "#2965f1"},
-        { value: 60, name: "JavaScript", color: "#f0dc4e"},
-        { value: 50, name: "VUE 3", color: "green"},
-        { value: 50, name: "NUXT 3", color: "green"},
-        { value: 30, name: "C#", color: "#00589d"},
-        { value: 100, name: "git", color: "#f05133"},
-        { value: 30, name: "PHP", color: "#787cb4"},
-        { value: 10, name: "Laravel", color: "#ff291a"}
-      ],
-    };
-  },
-};
+const skills = ref([]);
+const { getSkills } = useSkillService(); 
+
+onMounted(async () => {
+  try {
+    skills.value = await getSkills();
+  } catch (error) {
+    console.error(error.message);
+  }
+});
 
 </script>
 <style>
