@@ -108,13 +108,28 @@ p {
     transform: scale(1.1);
 }
 @media only screen and (max-width: 950px) {
+    .contentBox {
+        padding: 0 3vw;
+    }
+    .contentBox {
+        display: flex;
+        justify-content: center;
+    }
     .contentBoxMini {
-        display: block;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
     }
     .contentBoxMini p {
         width: auto;
+        text-align: center;
     }
     .contentBoxMini img {
         width: auto;
     }
+}
+
+@media only screen and (max-width: 1250px) {
+    
 }
