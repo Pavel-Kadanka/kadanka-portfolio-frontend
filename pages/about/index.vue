@@ -8,7 +8,7 @@
             <p>
                 
             </p>
-            <img src="#" alt="">
+            <img src="/postava.png" alt="">
         </div>
     </div>
     <br>
