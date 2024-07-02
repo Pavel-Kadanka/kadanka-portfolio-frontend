@@ -5,7 +5,7 @@
     <h2 class="contentBox">ABOUT</h2>
     <div class="contentBox">
         <div class="contentBoxMini">
-            <p>
+            <pre>
                 I'm a motivated and detail-oriented frontend developer, my expertise are in Vue.js, Nuxt.js, Node.js, HTML, CSS, and JavaScript. With some basics in PHP, I am eager to contribute to dynamic web development projects. My goal is to create seamless, responsive, and user-friendly web applications that meet and exceed client expectations.
 
                 Frontend Development
@@ -31,7 +31,7 @@
                 Professional Goals
                 - Contribute to innovative web development projects that challenge and expand my technical skills.
                 - Continuously improve my expertise in frontend and backend development, exploring new technologies and best practices.
-            </p>
+            </pre>
             <img src="/postava.png" alt="">
         </div>
     </div>
