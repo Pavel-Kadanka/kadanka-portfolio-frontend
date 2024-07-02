@@ -31,7 +31,6 @@ p {
     width: 35vw;
 }
 .contentBoxMini img {
-    border: 1px white solid;
     width: 50rex;
     height: 50rex;
     transition: 1s;
