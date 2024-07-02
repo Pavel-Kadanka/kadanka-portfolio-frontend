@@ -4,7 +4,7 @@
   <h2 class="contentBox">MY PROJECTS</h2>
   <v-row class="contentBox">
     <div class="contentBoxMini">
-      <v-col v-for="project in projects" :key="project.id" cols="10" md="40">
+      <v-col v-for="project in projects" :key="project.id" cols="4" md="6">
         <v-card
           color="#00DE59"
           border=""
