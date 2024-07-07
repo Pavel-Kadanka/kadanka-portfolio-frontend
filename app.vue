@@ -1,5 +1,7 @@
 <template>
-  <NuxtPage />
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 <script>
 
@@ -8,5 +10,6 @@
   html, body {
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 </style>
