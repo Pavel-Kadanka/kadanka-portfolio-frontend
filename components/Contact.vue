@@ -17,7 +17,7 @@
           
           <v-dialog v-model="dialog" max-width="500px" persistent>
               <v-card variant="elevated" color="#212E4A" align="center">
-                  <v-card-title class="text-h5 font-weight-bold">This is my working email :)</v-card-title>
+                  <v-card-title class="special-font font-weight-bold special-color02">This is my working email :)</v-card-title>
                   <v-card-text class="text-subtitle-1 opacity-60">
                       pavel.kadanka@outlook.cz
                   </v-card-text>
