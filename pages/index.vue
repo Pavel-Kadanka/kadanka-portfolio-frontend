@@ -153,14 +153,14 @@ setup() {
       console.error(error.message);
     }
     try {
-        const fetchedProjects = await getProjects();
-        projects.value = fetchedProjects.map(project => ({
-          ...project,
-          dialog: ref(false) // Initialize dialog as a ref with a default value of false
-        }));
-      } catch (error) {
-        console.error(error.message);
-      }
+      const fetchedProjects = await getProjects();
+      projects.value = fetchedProjects.map(project => ({
+        ...project,
+        dialog: { value: false } // Initialize dialog as an object with a value property
+      }));
+    } catch (error) {
+      console.error(error.message);
+    }
   });
 
   const fallbackSkills = [
