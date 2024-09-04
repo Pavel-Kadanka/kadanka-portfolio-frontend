@@ -156,6 +156,7 @@ setup() {
       projects.value = await getProjects();
     } catch (error) {
       console.error(error.message);
+      console.log("projects error");
     }
   });
 
