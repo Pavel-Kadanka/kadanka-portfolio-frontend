@@ -96,7 +96,7 @@
                       <v-card variant="outlined" color="#FF81C1" max-height="200" max-width="200">
                           <v-card-title class="text-h4 font-weight-bold special-color02 text-left">{{ project.title }}</v-card-title>
                           <v-card-text class="truncate-text text-subtitle-1 text-left">{{ project.name }}</v-card-text>
-                          <v-card-actions class="ml-4">
+                          <v-card-actions class="ml-2">
                               <v-btn variant="outlined" @click="openDialog(project)">more-info</v-btn>
                           </v-card-actions>
                       </v-card>
