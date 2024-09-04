@@ -92,7 +92,7 @@
       <v-row>
           <v-col cols="12" md="9" align="center" justify="center">
               <v-row>
-                  <v-col v-for="project in fallbackProject" :key="project.id" :cols="isMobile ? 6 : 12" md="4" align="center" class="fly-left">
+                  <v-col v-for="project in project" :key="project.id" :cols="isMobile ? 6 : 12" md="4" align="center" class="fly-left">
                       <v-card variant="outlined" color="#FF81C1" max-height="200" max-width="200">
                           <v-card-title class="text-h4 font-weight-bold special-color02">{{ project.title }}</v-card-title>
                           <v-card-text class="truncate-text text-subtitle-1">{{ project.name }}</v-card-text>
