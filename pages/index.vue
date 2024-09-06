@@ -94,9 +94,9 @@
               <v-row>
                   <v-col v-for="project in projects" :key="project.id" :cols="isMobile ? 6 : 12" md="4" align="center" class="fly-left">
                       <v-card variant="outlined" color="#FF81C1" max-height="200" max-width="200">
-                          <v-card-title class="text-h4 font-weight-bold special-color02">{{ project.title }}</v-card-title>
-                          <v-card-text class="truncate-text text-subtitle-1">{{ project.name }}</v-card-text>
-                          <v-card-actions>
+                          <v-card-title class="text-h4 font-weight-bold special-color02 text-left">{{ project.title }}</v-card-title>
+                          <v-card-text class="truncate-text text-subtitle-1 text-left">{{ project.name }}</v-card-text>
+                          <v-card-actions class="ml-2">
                               <v-btn variant="outlined" @click="openDialog(project)">more-info</v-btn>
                           </v-card-actions>
                       </v-card>
@@ -153,7 +153,11 @@ setup() {
       console.error(error.message);
     }
     try {
-      projects.value = await getProjects();
+      const fetchedProjects = await getProjects();
+      projects.value = fetchedProjects.map(project => ({
+        ...project,
+        dialog: { value: false } // Initialize dialog as an object with a value property
+      }));
     } catch (error) {
       console.error(error.message);
     }
