@@ -7,9 +7,16 @@
 
 </script>
 <style>
-  html, body {
+html, body {
+  height: 100%;
   margin: 0;
-  padding: 0;
   scroll-behavior: smooth;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 }
+
+.v-container {
+  scroll-snap-align: start;
+}
+
 </style>
