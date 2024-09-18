@@ -37,7 +37,7 @@
       </v-col>
 
       <v-col align="center">
-          <v-btn href="https://www.upwork.com/freelancers/~01b2864f3f25d242c8?mp_source=share" height="60" width="60" variant="outlined" color="#FF81C1" class="hover">
+          <v-btn href="https://www.upwork.com/freelancers/~01e505b19bc3648ea8?mp_source=share" height="60" width="60" variant="outlined" color="#FF81C1" class="hover">
               <v-icon left>
                   <img src="/upwork.svg" alt="UpWork" height="25">
               </v-icon>

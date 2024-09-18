@@ -55,6 +55,7 @@ body {
         opacity: 1;
     }
 }
-.scaled-content {
-
+.post-text {
+    font-size: 1.5rem;
+    color: #FFFFFF;
 }
