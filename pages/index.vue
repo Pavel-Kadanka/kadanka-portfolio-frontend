@@ -40,7 +40,7 @@
         </v-col>
         <v-col cols="12" md="6" align="" align-self="center" :class="{'fly-right': !isMobile, 'text-center': isMobile}">
             <v-progress-circular
-                v-for="skill in fallbackSkills"
+                v-for="skill in skills"
                 :key="skill.id"
                 class=""
                 color="#FF81C1"
@@ -114,7 +114,7 @@
     <v-row>
         <v-col cols="12" md="9" align="center" justify="center">
             <v-row>
-                <v-col v-for="project in fallbackProject" :key="project.id" :cols="isMobile ? 6 : 12" md="4" align="center" class="fly-left">
+                <v-col v-for="project in projects" :key="project.id" :cols="isMobile ? 6 : 12" md="4" align="center" class="fly-left">
                     <v-card variant="outlined" color="#FF81C1" max-height="200" max-width="200">
                         <v-card-title class="text-h4 font-weight-bold special-color02 text-left">{{ project.title }}</v-card-title>
                         <v-card-text class="truncate-text text-subtitle-1 text-left">{{ project.name }}</v-card-text>

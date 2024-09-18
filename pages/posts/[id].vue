@@ -16,29 +16,30 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col>
+      <!-- First column with images and progress circular -->
+      <v-col cols="12">
         <!-- Dialog for the image -->
         <v-dialog v-model="x" @click="closeDialog" class="blurred-background">
           <v-img :src="selectedImage?.title" max-height="500px" class="image"></v-img>
         </v-dialog>
-
+    
         <!-- Carousel to display images -->
-        <v-carousel height="200px" class="mt-8">
+        <v-carousel height="250px" class="mt-8">
           <v-carousel-item
-            v-for="image in fallbackProjects[post].imageList"
+            v-for="image in projects[post].imageList"
             :key="image.imageId"
             :src="image.title"
             cover
             @click="openDialog(image)"
           ></v-carousel-item>
         </v-carousel>
-
+    
         <h2 class="text-h5 font-weight-bold special-color02 pt-4">
           Skill level when I did this project
         </h2>
-
+    
         <v-progress-circular
-          v-for="skill in fallbackProjects[post].usedSkills"
+          v-for="skill in projects[post].usedSkills"
           :key="skill.id"
           class="ma-2"
           color="#FF81C1"
@@ -49,11 +50,13 @@
           <span class="text-subtitle-1 font-weight-bold">{{ skill.name }}</span>
         </v-progress-circular>
       </v-col>
-
-      <v-col>
-        <p class="text-subtitle-1 pa-6">{{ fallbackProjects[post].name }}</p>
+    
+      <!-- Second column with project name -->
+      <v-col cols="12" class="custom-width">
+        <p class="text-subtitle-1 pa-6">{{ projects[post].name }}</p>
       </v-col>
     </v-row>
+    
   </v-container>
 </template>
 
@@ -61,14 +64,28 @@
 import { ref, computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useDisplay } from "vuetify";
+import useProjectService from '~/services/projectService';
 
 export default {
   setup() {
+    const { getProjects } = useProjectService();
     const route = useRoute();
     const post = route.params.id - 1; // Get the project ID from the route
 
     const x = ref(false); // Ref for controlling dialog visibility
     const selectedImage = ref(null); // Ref to store the selected image
+
+    onMounted(async () => {
+      try {
+        const fetchedProjects = await getProjects();
+        projects.value = fetchedProjects.map(project => ({
+          ...project,
+          dialog: { value: false }
+        }));
+      } catch (error) {
+        console.error(error.message);
+      }
+    });
 
     // Fallback project data
     const fallbackProjects = [
@@ -207,4 +224,7 @@ export default {
   filter: none;
 }
 
+.custom-width {
+  width: 100%;
+}
 </style>
