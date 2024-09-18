@@ -1,5 +1,5 @@
 <template>
-  <v-container class=" d-flex align-center scaled-content">
+  <v-container :class="{'full-height': isSuperLarge || isLarge}" class="d-flex align-center scaled-content">
     <v-row align-self="center" justify="center" class="d-flex align-center">
         <v-col cols="12" md="6" align-self="center" align="center">
             <v-img 
@@ -21,7 +21,7 @@
     </v-row>
 </v-container>
 
-<v-container id="skills" class="align-center scaled-content">
+<v-container id="skills" :class="{'full-height': isSuperLarge || isLarge}" class="align-center scaled-content">
     <v-row class="d-flex align-center">
         <v-col cols="12" md="6">
             <v-img
@@ -65,7 +65,7 @@
     </v-row>
 </v-container>
 
-<v-container id="contact1" class="scaled-content">
+<v-container id="contact1" :class="{'full-height': isSuperLarge || isLarge}" class="scaled-content">
     <v-row>
         <v-col md="6" :class="{'text-center': isMobile, 'text-left': !isMobile, 'fly-left': true, 'mx-16': true}">
             <h1 class="font-weight-bold text-center" :class="{'text-h2': !isMobile, 'text-h3 special-color02 special-font': isMobile}">I want <span class="special-color">YOU</span><br>to work with me.</h1>
@@ -105,7 +105,7 @@
     </v-row>
 </v-container>
 
-<v-container id="other-work" :class="{'mb-16 scaled-content panel': !isMobile, 'mb-0 scaled-content panel': isMobile}" align-self="center" justify="center">
+<v-container id="other-work" :class="{'full-height': isSuperLarge || isLarge, 'mb-16 scaled-content panel': !isMobile, 'mb-0 scaled-content panel': isMobile}" align-self="center" justify="center">
     <v-row :class="{'mt-16': !isMobile, 'mt-0': isMobile}">
         <v-col class="py-8">
             <h1 class="text-h2 text-center font-weight-bold">My other work</h1>
@@ -167,7 +167,12 @@ export default {
     const { getProjects } = useProjectService();
     const { sm } = useDisplay();
     const { xs } = useDisplay();
+    const { lg } = useDisplay();
+    const { xl } = useDisplay();
+
     const isMobile = computed(() => sm.value || xs.value);
+    const isSuperLarge = computed(() => xl.value);
+    const isLarge = computed(() => lg.value);
 
     onMounted(async () => {
       try {
@@ -289,10 +294,12 @@ export default {
 
     return {
     isMobile,
+    isLarge,
+    isSuperLarge,
     skills,
     projects,
     fallbackSkills,
-    fallbackProject 
+    fallbackProject
     };
   }
 };

@@ -3,7 +3,7 @@
     <v-row>
       <v-col>
         <h1 class="text-h2 font-weight-bold special-color02 text-left">
-          {{ fallbackProjects[post].title }}
+          {{ projects[post].title }}
         </h1>
       </v-col>
       <v-col align="end">
@@ -68,6 +68,7 @@ import useProjectService from '~/services/projectService';
 
 export default {
   setup() {
+    const projects = ref([]);
     const { getProjects } = useProjectService();
     const route = useRoute();
     const post = route.params.id - 1; // Get the project ID from the route
