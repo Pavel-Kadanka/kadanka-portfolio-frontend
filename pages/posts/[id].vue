@@ -3,7 +3,7 @@
     <v-row>
       <v-col>
         <h1 class="text-h2 font-weight-bold special-color02 text-left">
-          {{ fetchedProjects[post].title }}
+          {{ projects[post].title }}
         </h1>
       </v-col>
       <v-col align="end">
@@ -26,7 +26,7 @@
         <!-- Carousel to display images -->
         <v-carousel height="250px" class="mt-8">
           <v-carousel-item
-            v-for="image in fetchedProjects[post].imageList"
+            v-for="image in projects[post].imageList"
             :key="image.imageId"
             :src="image.title"
             cover
@@ -39,7 +39,7 @@
         </h2>
     
         <v-progress-circular
-          v-for="skill in fetchedProjects[post].usedSkills"
+          v-for="skill in projects[post].usedSkills"
           :key="skill.id"
           class="ma-2"
           color="#FF81C1"
@@ -53,7 +53,7 @@
     
       <!-- Second column with project name -->
       <v-col cols="12" class="custom-width">
-        <p class="text-subtitle-1 pa-6">{{ fetchedProjects[post].name }}</p>
+        <p class="text-subtitle-1 pa-6">{{ projects[post].name }}</p>
       </v-col>
     </v-row>
     
@@ -200,6 +200,7 @@ export default {
       fallbackProjects,
       x,
       selectedImage,
+      projects,
       openDialog,
       closeDialog,
       isMobile,
