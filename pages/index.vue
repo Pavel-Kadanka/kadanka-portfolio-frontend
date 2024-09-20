@@ -119,7 +119,7 @@
                         <v-card-title class="text-h4 font-weight-bold special-color02 text-left">{{ project.title }}</v-card-title>
                         <v-card-text class="truncate-text text-subtitle-1 text-left">{{ project.name }}</v-card-text>
                         <v-card-actions class="ml-2">
-                            <v-btn variant="outlined"><NuxtLink :to="'/posts/' + project.id">more info</NuxtLink></v-btn>
+                            <v-btn variant="outlined" :to="'/posts/' + project.id">more info</v-btn>
                         </v-card-actions>
                     </v-card>
                     <v-dialog v-model="project.dialog.value" max-width="700px" persistent>
