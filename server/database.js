@@ -13,8 +13,7 @@ export const getConnection = async () => {
     password: url.password,
     database: 'defaultdb',
     ssl: {
-      ca: process.env.CA_CERT ? Buffer.from(process.env.CA_CERT, 'utf-8') : undefined, // Read from environment variable
-      rejectUnauthorized: true // Enable SSL verification
+      rejectUnauthorized: false
     }
   });
 
