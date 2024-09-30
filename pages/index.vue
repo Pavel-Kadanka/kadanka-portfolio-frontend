@@ -42,7 +42,7 @@
             <v-progress-circular
                 v-for="skill in skills"
                 :key="skill.id"
-                class=""
+                class="ma-1"
                 color="#FF81C1"
                 bg-color="white"
                 size="128"
@@ -116,27 +116,13 @@
             <v-row>
                 <v-col v-for="project in projects" :key="project.id" :cols="isMobile ? 6 : 12" md="4" align="center" class="fly-left">
                     <v-card variant="outlined" color="#FF81C1" max-height="200" max-width="200">
-                        <v-card-title class="text-h4 font-weight-bold special-color02 text-left">{{ project.title }}</v-card-title>
-                        <v-card-text class="truncate-text text-subtitle-1 text-left">{{ project.name }}</v-card-text>
-                        <v-card-actions class="ml-2">
-                            <v-btn variant="outlined" :to="'/posts/' + project.id">more info</v-btn>
-                        </v-card-actions>
+                      <v-card-title class="text-h4 font-weight-bold special-color02 text-left">{{ project.title }}</v-card-title>
+                      <v-card-text class="truncate-text text-subtitle-1 text-left">{{ project.name }}</v-card-text>
+                      <v-card-actions class="ml-2">
+                        <v-btn variant="outlined" :to="'/posts/' + project.id">more info</v-btn>
+                      </v-card-actions>
                     </v-card>
-                    <v-dialog v-model="project.dialog.value" max-width="700px" persistent>
-                        <v-card variant="elevated" color="#212E4A" align="center" height="400">
-                            <v-card-title class="text-h4 font-weight-bold special-color02">{{ project.title }}</v-card-title>
-                            <v-card-item class="d-flex justify-center">
-                              <v-img :src="project.image" max-width="300" :width="200" aspect-ratio="16/9"></v-img>
-                            </v-card-item>
-                            <v-card-text class="text-subtitle-1 opacity-60">
-                                {{ project.name }}
-                            </v-card-text>
-                            <v-card-actions>
-                                <v-btn variant="outlined" color="#FF81C1" text @click="closeDialog(project)">Close</v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-dialog>
-                </v-col>
+                </v-col>                  
             </v-row>
         </v-col>
         <v-col cols="12" md="3" class="d-flex justify-end align-start" :class="{'justify-center': isMobile}">
@@ -154,153 +140,43 @@
 
 <script>
 import { ref, onMounted, computed } from 'vue';
-import useSkillService from '~/services/skillService';
-import useProjectService from '~/services/projectService';
-import { useDisplay } from 'vuetify';
-
+import { useDisplay } from 'vuetify'; // Assuming you're using Vuetify for responsive display
 
 export default {
   setup() {
-    const skills = ref([]);
+    const { sm, xs, lg, xl } = useDisplay();
     const projects = ref([]);
-    const { getSkills } = useSkillService();
-    const { getProjects } = useProjectService();
-    const { sm } = useDisplay();
-    const { xs } = useDisplay();
-    const { lg } = useDisplay();
-    const { xl } = useDisplay();
+    const skills = ref([]);
+
+    onMounted(async () => {
+      // Fetch projects
+      try {
+        projects.value = await $fetch('/api/projects');
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      }
+      // Fetch skills
+      try {
+        skills.value = await $fetch('/api/skills');
+      } catch (error) {
+        console.error('Error fetching skills:', error);
+      }
+    });
 
     const isMobile = computed(() => sm.value || xs.value);
     const isSuperLarge = computed(() => xl.value);
     const isLarge = computed(() => lg.value);
 
-    onMounted(async () => {
-      try {
-        skills.value = await getSkills();
-      } catch (error) {
-        console.error(error.message);
-      }
-      try {
-        const fetchedProjects = await getProjects();
-        projects.value = fetchedProjects.map(project => ({
-          ...project,
-          dialog: { value: false }
-        }));
-      } catch (error) {
-        console.error(error.message);
-      }
-    });
-
-    const fallbackSkills = [
-    {"id":1,"percentage":100,"name":"HTML","color":"#f16529"},
-    {"id":2,"percentage":90,"name":"CSS","color":"#2965f1"},
-    {"id":3,"percentage":70,"name":"JavaScript","color":"#f0dc4e"},
-    {"id":4,"percentage":50,"name":"VUE 3","color":"green"},
-    {"id":5,"percentage":50,"name":"NUXT 3","color":"green"},
-    {"id":6,"percentage":20,"name":"C#","color":"#00589d"},
-    {"id":7,"percentage":100,"name":"git","color":"#f05133"},
-    {"id":8,"percentage":40,"name":"PHP","color":"#787cb4"},
-    {"id":9,"percentage":20,"name":"Laravel","color":"#ff291a"},
-    {"id":10,"percentage":20,"name":"Laravel","color":"#ff291a"}
-
-  ];
-
-  const fallbackProject = [
-        {
-        "id": 1,
-        "title": "takovi",
-        "name": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        "imageList": [
-            { title: "/mail.png", imageId: 1 },
-            { title: "/mail.png", imageId: 2 }
-        ],
-        "dialog": ref(false),
-        "usedSkills": [
-            { name: "Vue", percentage: 75, id: 1 },
-            { name: "Nuxt", percentage: 80, id: 2 }
-        ]
-        },
-        {
-        "id": 2,
-        "title": "takovi",
-        "name": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        "imageList": [
-            { title: "/mail.png", imageId: 1 },
-            { title: "/mail.png", imageId: 2 }
-        ],
-        "dialog": ref(false),
-        "usedSkills": [
-            { name: "Vue", percentage: 75, id: 1 },
-            { name: "Nuxt", percentage: 80, id: 2 }
-        ]
-        },
-        {
-        "id": 3,
-        "title": "marek",
-        "name": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        "imageList": [
-            { title: "/mail.png", imageId: 1 },
-            { title: "/takovi.png", imageId: 2 }
-        ],
-        "dialog": ref(false),
-        "usedSkills": [
-            { name: "Vue", percentage: 75, id: 1 },
-            { name: "Nuxt", percentage: 80, id: 2 }
-        ]
-        },
-        {
-        "id": 4,
-        "title": "takovi",
-        "name": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        "imageList": [
-            { title: "/mail.png", imageId: 1 },
-            { title: "/mail.png", imageId: 2 }
-        ],
-        "dialog": ref(false),
-        "usedSkills": [
-            { name: "Vue", percentage: 75, id: 1 },
-            { name: "Nuxt", percentage: 80, id: 2 }
-        ]
-        },
-        {
-        "id": 5,
-        "title": "takovi",
-        "name": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        "imageList": [
-            { title: "/mail.png", id: 1 },
-            { title: "/mail.png", id: 2 }
-        ],
-        "dialog": ref(false),
-        "usedSkills": [
-            { name: "Vue", percentage: 75, id: 1 },
-            { name: "Nuxt", percentage: 80, id: 2 }
-        ]
-        },
-        {
-        "id": 6,
-        "title": "takovi",
-        "name": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        "imageList": [
-            { title: "/mail.png", id: 1 },
-            { title: "/mail.png", id: 2 }
-        ],
-        "dialog": ref(false),
-        "usedSkills": [
-            { name: "Vue", percentage: 75, id: 1 },
-            { name: "Nuxt", percentage: 80, id: 2 }
-        ]
-        }
-      ];
-
     return {
-    isMobile,
-    isLarge,
-    isSuperLarge,
-    skills,
-    projects,
-    fallbackSkills,
-    fallbackProject
+      isMobile,
+      isLarge,
+      isSuperLarge,
+      projects,
+      skills
     };
+  },
+  methods: {
+
   }
 };
 </script>
