@@ -13,7 +13,7 @@ export const getConnection = async () => {
     password: url.password,
     database: 'defaultdb',
     ssl: {
-      ca: fs.readFileSync('ca.pem'), // Path to your CA certificate
+      ca: process.env.CA_CERT ? Buffer.from(process.env.CA_CERT, 'utf-8') : undefined, // Read from environment variable
       rejectUnauthorized: true // Enable SSL verification
     }
   });
