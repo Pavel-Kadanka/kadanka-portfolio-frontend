@@ -31,19 +31,10 @@
         </v-carousel>
 
         <h2 class="text-h5 font-weight-bold special-color pt-4">
-          Skill level when I did this project
+          Used languages
         </h2>
-
-        <v-progress-circular 
-          v-for="skill in project_skills"
-          :key="skill.id" 
-          class="ma-2" 
-          color="#FF81C1"
-          bg-color="white" 
-          size="64" 
-          :model-value="skill.percentage">
-          <span class="text-subtitle-1 font-weight-bold">{{ skill.name }}</span>
-        </v-progress-circular>
+        
+        <span v-for="skill in project_skills" class="text-subtitle-1 font-weight-bold pr-8"><v-icon icon="mdi-file" color="#FF81C1"></v-icon>{{ skill.name }}</span>
 
       
       </v-col>

@@ -67,16 +67,13 @@
 
 <v-container id="contact1" :class="{'full-height': isSuperLarge || isLarge}" class="scaled-content">
     <v-row>
-        <v-col md="6" :class="{'text-center': isMobile, 'text-left': !isMobile, 'fly-left': true, 'mx-16': true}">
+        <v-col md="9" :class="{'text-center': isMobile, 'text-center': !isMobile, 'fly-left': true, 'mx-16': true}">
             <h1 class="font-weight-bold text-center" :class="{'text-h2': !isMobile, 'text-h3 special-color02 special-font': isMobile}">I want <span class="special-color">YOU</span><br>to work with me.</h1>
             <p class="text-subtitle-1 text-center mt-2 pd-10">If you are interested, you can see more<br>of my work if you scroll down. </p>
         </v-col>
-        <v-col cols="12" md="6">
-            <!-- Empty column for spacing -->
-        </v-col>
     </v-row>
     <v-row>
-        <v-col cols="12" md="6" class="img-container" :class="{ 'img-center': isMobile }">
+        <v-col md="6" class="img-container img-center " :class="{'pl-16': !isMobile}">
             <v-img
                 class="mb-4 fly-left"
                 src="/me-pointing.png"
@@ -86,7 +83,7 @@
                 align="center"
             ></v-img>
         </v-col>
-        <v-col cols="12" md="6" class="fly-right mb-16" align-self="end">
+        <v-col md="6" class="fly-right mb-16" align-self="end">
             <h2 class="text-h4 font-weight-bold special-color02 text-center">If you are <span class="special-color">already interested</span><br>you can contact me here <span class="text-subtitle-1 font-italic">btw:)</span><br></h2>
             <br>
             <Contact align="end"/>
@@ -209,6 +206,6 @@ animation: flyIn-right 1s forwards;
 }
 
 .img-center {
-  justify-content: center; /* Alignment for mobile screens */
+  justify-content: start; /* Alignment for mobile screens */
 }
 </style>
